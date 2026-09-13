@@ -7,13 +7,18 @@ function getSavedPatientName() {
   }
 }
 
-const savedName = getSavedPatientName();
-
 export const PATIENT = {
-  givenName: savedName ? savedName.split(' ')[0] : "कैलाश",
-  middleName: savedName ? "" : "नाथ",
-  fullName: savedName || "कैलाश नाथ शर्मा",
-  honorific: "दादाजी",
+  get givenName() {
+    const n = getSavedPatientName();
+    return n ? n.split(' ')[0] : "कैलाश";
+  },
+  get middleName() {
+    return getSavedPatientName() ? "" : "नाथ";
+  },
+  get fullName() {
+    return getSavedPatientName() || "कैलाश नाथ शर्मा";
+  },
+  honorific: "जी",
   courtesy: "जी",
   location: "Urban Delhi",
   locality: "सतंभ विहार, नई दिल्ली",

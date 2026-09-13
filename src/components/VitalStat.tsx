@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { BilingualText } from "./BilingualText";
 import { Badge } from "./Badge";
 import type { Bilingual } from "../types";
+import { Sparkline } from "./Sparkline";
 
 type Props = {
   icon?: ReactNode;
@@ -13,6 +14,7 @@ type Props = {
   unit?: string;
   caption?: Bilingual;
   layout?: "compact" | "detailed" | "mini";
+  sparklineData?: number[];
   footer?: ReactNode;
 };
 
@@ -26,6 +28,7 @@ export function VitalStat({
   unit,
   caption,
   layout = "compact",
+  sparklineData,
   footer,
 }: Props) {
   return (
@@ -58,6 +61,7 @@ export function VitalStat({
         <span>{value}</span>
         {unit ? <span className="vital__unit">{unit}</span> : null}
       </p>
+      {sparklineData ? <Sparkline data={sparklineData} /> : null}
       {caption ? (
         <BilingualText
           primary={caption.primary}

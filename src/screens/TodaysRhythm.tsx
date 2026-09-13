@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getMeds, updateMedStatus } from "../data/medicines";
+import { getMeds, updateMedStatus, resetMedsForTesting } from "../data/medicines";
 import type { Medicine } from "../data/medicines";
 import { doctorConsultNote, doctorPrescribedBy } from "../data/doctor";
 import { heroGreeting } from "../data/patient";
@@ -10,8 +10,11 @@ import { PrimaryActionCard } from "../components/PrimaryActionCard";
 import { PrimaryCtaScope } from "../components/PrimaryCtaScope";
 import { VitalStat } from "../components/VitalStat";
 import { VoiceOrb } from "../components/VoiceOrb";
+import { useVoice, useScreenVoiceContext } from "../voice/VoiceContext";
+import { useMedConvo } from "../voice/medConvo";
 
 export function TodaysRhythm() {
+  const { VE, voiceNavIntent, consumeVoiceIntent } = useVoice();
   const [meds, setMeds] = useState<Medicine[]>([]);
 
   useEffect(() => {
@@ -24,6 +27,47 @@ export function TodaysRhythm() {
 
   const handleTakeMed = (id: string) => {
     updateMedStatus(id, "taken");
+    setMeds([...getMeds()]);
+  };
+
+  const { startConvo, askingMedId, isActive, handleAnswer } = useMedConvo(meds, handleTakeMed);
+
+  // Screen context: handle medicine-specific intents, forward everything else
+  useScreenVoiceContext((intent: string) => {
+    if (isActive) {
+      handleAnswer(intent);
+      return;
+    }
+
+    if (intent === 'medicine') {
+      startConvo();
+    } else if (intent === 'yes') {
+      // Quick-take: only when NOT in active convo (convo sets its own context)
+      const m = meds.find(x => x.status === 'pending' || x.status === 'missed');
+      if (m) {
+        handleTakeMed(m.id);
+        const L = (() => { try { return JSON.parse(localStorage.getItem('esw_v4') || '{}').lang || 'en'; } catch { return 'en'; } })();
+        VE.speak(L === 'hi' ? 'बहुत अच्छा।' : 'Great.');
+      }
+    } else if (
+      intent === 'health' || intent === 'family' || intent === 'caregiver' ||
+      intent === 'appointment' || intent === 'emergency' || intent === 'doctor'
+    ) {
+      VE._globalHandler(intent);
+    }
+    // home/back are handled by VE._dispatch before contextFn is called
+    // unknown intents: do nothing — VE's low-confidence handler takes over
+  });
+
+  useEffect(() => {
+    if (voiceNavIntent === "medicine") {
+      consumeVoiceIntent();
+      startConvo();
+    }
+  }, [voiceNavIntent, consumeVoiceIntent, startConvo]);
+
+  const handleReset = () => {
+    resetMedsForTesting();
     setMeds([...getMeds()]);
   };
 
@@ -62,14 +106,15 @@ export function TodaysRhythm() {
         </Card>
 
         {nextMed ? (
-          <PrimaryActionCard
-            variant="primary"
-            eyebrow={
-              <>
-                <span className="pac__dot" />
-                {nextMed.status === 'pending' ? 'अब दवा लें' : 'आगामी दवा'} • {nextMed.periodHi} {nextMed.time} बजे
-              </>
-            }
+          <div className={askingMedId === nextMed.id ? "asking" : ""}>
+            <PrimaryActionCard
+              variant="primary"
+              eyebrow={
+                <>
+                  <span className="pac__dot" />
+                  {nextMed.status === 'pending' ? 'अब दवा लें' : 'आगामी दवा'} • {nextMed.periodHi} {nextMed.time} बजे
+                </>
+              }
             icon={<IconPlusMed />}
             title={nextMed.name}
             subtitle={nextMed.subtitle}
@@ -87,6 +132,7 @@ export function TodaysRhythm() {
               </>
             }
           />
+          </div>
         ) : (
           <Card padding="md">
             <div style={{ textAlign: "center", padding: "20px 0" }}>
@@ -94,6 +140,12 @@ export function TodaysRhythm() {
               <p style={{ marginTop: "12px", color: "var(--color-text)", fontWeight: 600 }}>
                 आज की सभी दवाइयाँ ले ली गई हैं
               </p>
+              <button
+                onClick={handleReset}
+                style={{ marginTop: "16px", padding: "4px 8px", background: "none", border: "1px solid var(--color-border)", borderRadius: "4px", color: "var(--color-text-muted)", fontSize: "0.8rem", cursor: "pointer" }}
+              >
+                Reset for Testing
+              </button>
             </div>
           </Card>
         )}

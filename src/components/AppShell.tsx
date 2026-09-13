@@ -21,6 +21,7 @@ type Props = {
   showVoiceEngine?: boolean;
   showTelemetry?: boolean;
   sosLabel?: string;
+  onLogout?: () => void;
   children: ReactNode;
 };
 
@@ -32,6 +33,7 @@ export function AppShell({
   showVoiceEngine = false,
   showTelemetry = false,
   sosLabel = "SOS एक-टैप",
+  onLogout,
   children,
 }: Props) {
   return (
@@ -101,7 +103,15 @@ export function AppShell({
           ) : null}
         </div>
         <div className="shell__header-actions">
-          <Button variant="sos" size="sm" icon={<IconSpark />}>
+          {onLogout && (
+            <button 
+              onClick={onLogout}
+              style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.9rem', marginRight: 12, textDecoration: 'underline' }}
+            >
+              Logout
+            </button>
+          )}
+          <Button variant="sos" size="sm" icon={<IconSpark />} onClick={() => onNavigate("emergency")}>
             {sosLabel}
           </Button>
           <img className="shell__avatar" src="/avatars/kailash.svg" alt="" width={36} height={36} />

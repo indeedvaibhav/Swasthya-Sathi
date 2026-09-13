@@ -91,3 +91,12 @@ export function updateMedStatus(id: string, status: MedicineStatus) {
     if (med) med.status = status;
   }
 }
+
+export function resetMedsForTesting() {
+  cachedMeds = buildMeds().map(m => ({ ...m, status: "pending" }));
+}
+
+// Expose to window for easy testing in console
+if (typeof window !== "undefined") {
+  (window as any).resetMeds = resetMedsForTesting;
+}

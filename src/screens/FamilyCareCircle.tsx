@@ -1,4 +1,5 @@
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
+import { getFamilyMembers, type FamilyMember } from "../data/db";
 import { Badge } from "../components/Badge";
 import { BilingualText } from "../components/BilingualText";
 import { Button } from "../components/Button";
@@ -18,9 +19,51 @@ import { PrimaryCtaScope } from "../components/PrimaryCtaScope";
 import { TimelineEntry } from "../components/TimelineEntry";
 import { VitalStat } from "../components/VitalStat";
 import { PATIENT } from "../data/patient";
+import { useVoice, useScreenVoiceContext } from "../voice/VoiceContext";
 
 export function FamilyCareCircle() {
+  const { VE, voiceNavIntent, consumeVoiceIntent } = useVoice();
   const [message, setMessage] = useState("");
+  const [family, setFamily] = useState<FamilyMember[]>([]);
+
+  useEffect(() => {
+    setFamily(getFamilyMembers());
+  }, []);
+
+  useScreenVoiceContext((intent: string) => {
+    if (intent === 'add_family') {
+      const L = (() => {
+        try {
+          const sv = JSON.parse(localStorage.getItem('esw_v4') || '{}');
+          return sv.lang || 'en';
+        } catch { return 'en'; }
+      })();
+      VE.speak(L === 'hi' ? 'परिवार के सदस्य को जोड़ने की सुविधा जल्द आ रही है।' : 'Add family member feature coming soon.');
+    } else {
+      // Forward all other recognized intents to global handler
+      VE._globalHandler(intent);
+    }
+  });
+
+  useEffect(() => {
+    if (voiceNavIntent === 'family' || voiceNavIntent === 'caregiver') {
+      consumeVoiceIntent();
+      const L = (() => { try { return JSON.parse(localStorage.getItem('esw_v4') || '{}').lang || 'en'; } catch { return 'en'; } })();
+      const primaryContact = family.length > 0 ? (L === 'hi' ? family[0].nameHi || family[0].name : family[0].name) : '';
+      
+      if (primaryContact) {
+        VE.speak(L === 'hi' 
+          ? `ये आपका फैमिली केयर सर्कल है। ${primaryContact} आपकी प्राइमरी फैमिली कॉन्टैक्ट हैं।` 
+          : `This is your Family Care Circle. ${primaryContact} is your primary family contact.`
+        );
+      } else {
+        VE.speak(L === 'hi' 
+          ? `ये आपका फैमिली केयर सर्कल है।` 
+          : `This is your Family Care Circle.`
+        );
+      }
+    }
+  }, [voiceNavIntent, consumeVoiceIntent, VE, family]);
 
   function onSend(event: FormEvent) {
     event.preventDefault();
@@ -163,44 +206,30 @@ export function FamilyCareCircle() {
                 </button>
               </div>
               <ul className="team__list">
-                <li className="team__row">
-                  <img src="/avatars/ananya.svg" alt="" width={40} height={40} />
-                  <div>
-                    <p className="team__name">
-                      अनन्या शर्मा <Badge tone="ok">Primary</Badge>
-                    </p>
-                    <p className="team__meta">Daughter • Bengaluru</p>
-                  </div>
-                  <div className="team__actions">
-                    <button type="button" className="icon-btn" aria-label="संदेश">
-                      <IconMessage />
-                    </button>
-                    <button type="button" className="icon-btn" aria-label="कॉल">
-                      <IconPhone />
-                    </button>
-                  </div>
-                </li>
-                <li className="team__row">
-                  <img src="/avatars/rohan.svg" alt="" width={40} height={40} />
-                  <div>
-                    <p className="team__name">
-                      रोहन शर्मा <span className="team__role">Son</span>
-                    </p>
-                    <p className="team__meta">London, UK • 4 घंटे पहले सक्रिय</p>
-                  </div>
-                  <button type="button" className="icon-btn" aria-label="कॉल">
-                    <IconPhone />
-                  </button>
-                </li>
-                <li className="team__row">
-                  <img src="/avatars/mary.svg" alt="" width={40} height={40} />
-                  <div>
-                    <p className="team__name">
-                      सिस्टर मेरी डिसूजा <Badge tone="warn">Nurse</Badge>
-                    </p>
-                    <p className="team__meta">होम विजिट: गुरुवार, 10:00 AM</p>
-                  </div>
-                </li>
+                {family.map(member => (
+                  <li className="team__row" key={member.id}>
+                    <img src={member.avatar || "/avatars/doctor.svg"} alt="" width={40} height={40} />
+                    <div>
+                      <p className="team__name">
+                        {member.nameHi || member.name}{" "}
+                        {member.role ? (
+                          <Badge tone={member.role === 'Nurse' ? 'warn' : 'ok'}>{member.role}</Badge>
+                        ) : (
+                          <span className="team__role">{member.relationship}</span>
+                        )}
+                      </p>
+                      <p className="team__meta">{member.location || member.phone}</p>
+                    </div>
+                    <div className="team__actions">
+                      <button type="button" className="icon-btn" aria-label="संदेश">
+                        <IconMessage />
+                      </button>
+                      <button type="button" className="icon-btn" aria-label="कॉल">
+                        <IconPhone />
+                      </button>
+                    </div>
+                  </li>
+                ))}
               </ul>
             </Card>
 
