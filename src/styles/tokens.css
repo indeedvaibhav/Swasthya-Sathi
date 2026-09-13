@@ -1,0 +1,99 @@
+/* Sampled from Stitch PNG exports (compressed captures).
+   Hex values are quantized from pixel regions, not guessed. */
+
+:root {
+  /* Color */
+  --color-bg: #f7f9f8;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f4f8f8;
+  --color-surface-mint: #e4f4f0;
+  --color-nav-active: #e2f1ef;
+  --color-chip: #f0f5f3;
+  --color-quote: #f0f4f0;
+  --color-accent-surface: #fcf8e8;
+
+  --color-primary: #0d8a7e;
+  --color-primary-bright: #0c9488;
+  --color-primary-dark: #088878;
+  --color-primary-soft: #68b4ac;
+  --color-primary-glow: rgb(12 148 136 / 0.35);
+
+  --color-text: #182020;
+  --color-text-muted: #5c6b68;
+  --color-text-faint: #8a9693;
+  --color-text-on-primary: #ffffff;
+
+  --color-sos: #a01c1c;
+  --color-sos-text: #ffffff;
+
+  --color-accent: #d87404;
+  --color-accent-strong: #c45e00;
+
+  --color-border: #e4ece8;
+  --color-border-strong: #cce0dc;
+  --color-progress-track: #e0e8e4;
+
+  --color-status-ok-bg: #e4f4f0;
+  --color-status-ok-fg: #0d8a7e;
+  --color-status-warn-bg: #fcf0b4;
+  --color-status-warn-fg: #d87404;
+
+  /* Spacing (4px scale) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+  --space-9: 48px;
+  --space-10: 64px;
+
+  /* Type — Hindi primary uses the larger size; English secondary uses the step below */
+  --font-sans: "Noto Sans Devanagari", "Noto Sans", sans-serif;
+  --fs-2xs: 10px;
+  --fs-xs: 11px;
+  --fs-sm: 12px;
+  --fs-md: 13px;
+  --fs-lg: 14px;
+  --fs-xl: 16px;
+  --fs-2xl: 18px;
+  --fs-3xl: 22px;
+  --fs-4xl: 28px;
+  --fs-5xl: 32px;
+  --fs-display: 42px;
+  --fs-page: 48px;
+  --fs-stat: 36px;
+  --fs-stat-lg: 52px;
+  --touch-primary: 56px;
+  --lh-tight: 1.2;
+  --lh-snug: 1.35;
+  --lh-body: 1.5;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadow */
+  --shadow-card: 0 1px 2px rgb(24 32 32 / 0.04), 0 8px 24px rgb(24 32 32 / 0.05);
+  --shadow-soft: 0 1px 3px rgb(24 32 32 / 0.06);
+
+  /* Layout */
+  --sidebar-width: 264px;
+  --header-height: 72px;
+  --bottom-nav-height: 64px;
+  --touch-min: 48px;
+  --content-max: 1080px;
+  --bp-tablet: 1024px;
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
