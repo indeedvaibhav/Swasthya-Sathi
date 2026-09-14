@@ -72,7 +72,7 @@ export function ConciergeConsult() {
     }
     
     // Escape hatches: allow user to navigate away
-    if (intent === 'home' || intent === 'back' || intent === 'emergency' || intent === 'health' || intent === 'family' || intent === 'medicine') {
+    if (intent === 'home' || intent === 'back' || intent === 'emergency' || intent === 'health' || intent === 'family' || intent === 'medicine' || intent === 'ambulance') {
       VE._globalHandler(intent);
       return;
     }

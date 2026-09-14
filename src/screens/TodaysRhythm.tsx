@@ -51,7 +51,7 @@ export function TodaysRhythm() {
       }
     } else if (
       intent === 'health' || intent === 'family' || intent === 'caregiver' ||
-      intent === 'appointment' || intent === 'emergency' || intent === 'doctor'
+      intent === 'appointment' || intent === 'emergency' || intent === 'doctor' || intent === 'ambulance'
     ) {
       VE._globalHandler(intent);
     }
