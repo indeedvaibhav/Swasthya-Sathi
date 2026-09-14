@@ -44,7 +44,7 @@ export function AppShell({
             +
           </span>
           <div>
-            <p className="brand__name">Swasthya Sathi</p>
+            <p className="brand__name">Vridhh Swasthya Mitra</p>
             <p className="brand__tag">आरोग्यम् परमं भाग्यम्</p>
           </div>
         </div>

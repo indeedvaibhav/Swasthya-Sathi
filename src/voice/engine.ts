@@ -115,6 +115,11 @@ export const IM = {
       hiPh: ['आपातकाल','मुझे मदद चाहिए','तुरंत मदद','फ़ौरन मदद','मदद चाहिए'],
       kw:   ['emergency','sos','आपातकाल','urgent']
     },
+    ambulance: {
+      ph:   ['ambulance bulao','mujhe ambulance chahiye','ambulance bhejo','ambulance summon karo','ambulance','ambulance bheju','call ambulance','send ambulance','get ambulance'],
+      hiPh: ['एम्बुलेंस बुलाओ','मुझे एम्बुलेंस चाहिए','एम्बुलेंस भेजो','एम्बुलेंस','एम्बुलेंस बुलाओ जल्दी'],
+      kw:   ['ambulance','एम्बुलेंस','bulao']
+    },
     doctor: {
       ph:   ['talk to doctor','speak to doctor','doctor se baat karo','call doctor','chat with doctor'],
       hiPh: ['डॉक्टर से बात','डॉक्टर को बुलाओ','डॉक्टर से बात करो'],
@@ -598,6 +603,7 @@ export const VE = {
       case 'health':
       case 'spec_bp':     _stubs.navigateTo('vitals', intent);     break;
       case 'emergency':   _stubs.navigateTo('emergency', intent);  break;
+      case 'ambulance':   _stubs.navigateTo('ambulance', intent);  break;
       case 'doctor':      _stubs.navigateTo('consult', intent);    break;
       case 'caregiver':
       case 'family':      _stubs.navigateTo('family', intent);     break;

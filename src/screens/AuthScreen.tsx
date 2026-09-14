@@ -180,7 +180,7 @@ export function AuthScreen({ onLoginSuccess }: { onLoginSuccess: () => void }) {
       {step === "landing" && (
         <div style={{ textAlign: 'center', maxWidth: 600 }}>
           <div style={{ background: 'white', width: 96, height: 96, borderRadius: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 32px', color: 'var(--color-primary)', fontSize: '3rem', fontWeight: 'bold' }}>+</div>
-          <h1 style={{ fontSize: '3rem', marginBottom: 16 }}>Swasthya Sathi</h1>
+          <h1 style={{ fontSize: '3rem', marginBottom: 16 }}>Vridhh Swasthya Mitra</h1>
           <p style={{ fontSize: '1.5rem', marginBottom: 48, opacity: 0.9 }}>सरल स्वास्थ्य, सुरक्षित परिवार</p>
           <button onClick={() => setStep('phone')} style={{ background: 'white', color: 'var(--color-primary-dark)', padding: '16px 48px', borderRadius: 30, fontSize: '1.5rem', fontWeight: 'bold', border: 'none', cursor: 'pointer', boxShadow: '0 8px 24px rgba(0,0,0,0.2)' }}>
             शुरू करें / Get Started
@@ -192,7 +192,7 @@ export function AuthScreen({ onLoginSuccess }: { onLoginSuccess: () => void }) {
       <div style={{ background: 'var(--color-surface)', color: 'var(--color-text)', padding: 40, borderRadius: 24, maxWidth: 400, width: '100%', boxShadow: '0 12px 48px rgba(0,0,0,0.3)' }}>
         
         {step !== "welcome" && (
-          <h1 style={{ fontSize: '2rem', marginBottom: 8, textAlign: 'center', color: 'var(--color-primary)' }}>Swasthya Sathi</h1>
+          <h1 style={{ fontSize: '2rem', marginBottom: 8, textAlign: 'center', color: 'var(--color-primary)' }}>Vridhh Swasthya Mitra</h1>
         )}
         
         {step === "phone" && (

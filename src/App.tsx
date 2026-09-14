@@ -16,6 +16,7 @@ const GREET_SUB: Partial<Record<ScreenId, string>> = {
 
 import { ConciergeConsult } from "./screens/ConciergeConsult";
 import { EmergencySOS } from "./screens/EmergencySOS";
+import { AmbulanceAssist } from "./screens/AmbulanceAssist";
 
 // ── Read legacy session once at startup ───────────────────────────────────
 function readLegacySession() {
@@ -88,6 +89,7 @@ export default function App() {
       consult:   'consult',
       doctor:    'consult',
       emergency: 'emergency' as ScreenId,    // Map to emergency screen
+      ambulance: 'ambulance' as ScreenId,    // Map to ambulance assistance screen
     };
     const next = (legacyToReact[s] ?? s) as ScreenId;
     
@@ -134,7 +136,8 @@ export default function App() {
         {screen === "family" ? <FamilyCareCircle /> : null}
         {screen === "consult" ? <ConciergeConsult /> : null}
         {screen === "emergency" ? <EmergencySOS /> : null}
-        {screen !== "rhythm" && screen !== "regimen" && screen !== "vitals" && screen !== "family" && screen !== "consult" && screen !== "emergency" ? (
+        {screen === "ambulance" ? <AmbulanceAssist /> : null}
+        {screen !== "rhythm" && screen !== "regimen" && screen !== "vitals" && screen !== "family" && screen !== "consult" && screen !== "emergency" && screen !== "ambulance" ? (
           <p className="placeholder">
             यह स्क्रीन अभी नहीं बनी है — पहले परिवार सुरक्षा घेरा की समीक्षा करें।
           </p>

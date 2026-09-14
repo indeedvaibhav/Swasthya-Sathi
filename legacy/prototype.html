@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Swasthya Sathi — Voice Healthcare for Everyone</title>
+  <title>Vridhh Swasthya Mitra — Voice Healthcare for Everyone</title>
   <meta name="description" content="Voice-first healthcare app for elderly, bedridden, and low-literacy patients. Book appointments, manage medicines, and get help — all by voice, in Hindi and English." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1353,7 +1353,7 @@
   <div class="topbar-brand" onclick="goTo('home')">
     <div class="topbar-logo">🏥</div>
     <div>
-      <div class="topbar-title">Swasthya Sathi</div>
+      <div class="topbar-title">Vridhh Swasthya Mitra</div>
       <div class="topbar-sub">Care Network</div>
     </div>
   </div>
@@ -1370,7 +1370,7 @@
   <div class="intro-vignette"></div>
   <div class="intro-content">
     <div class="intro-fadein intro-logo">🏥</div>
-    <div class="intro-fadein intro-name">Swasthya Sathi</div>
+    <div class="intro-fadein intro-name">Vridhh Swasthya Mitra</div>
     <div class="intro-fadein intro-tagline">आपकी सेहत, आपकी आवाज़</div>
     <div class="intro-fadein intro-hero" id="intro-hero"></div>
     <div class="intro-fadein intro-wave" aria-hidden="true">
@@ -1394,11 +1394,11 @@
     <div class="home-brand" style="margin-bottom:32px;justify-content:center;">
       <div class="home-brand-logo">🏥</div>
       <div>
-        <div class="home-brand-text">Swasthya Sathi</div>
+        <div class="home-brand-text">Vridhh Swasthya Mitra</div>
         <div class="home-brand-sub">आपकी सेहत, आपकी आवाज़</div>
       </div>
     </div>
-    <h1 class="auth-heading" id="login-heading">Swasthya Sathi में आपका स्वागत है</h1>
+    <h1 class="auth-heading" id="login-heading">Vridhh Swasthya Mitra में आपका स्वागत है</h1>
     <p class="auth-sub" id="login-sub">अपना मोबाइल नंबर या ईमेल डालकर आगे बढ़ें</p>
     <div class="auth-tabs" id="login-tabs">
       <button class="auth-tab active" id="tab-phone" onclick="switchLoginTab('phone')">📱 मोबाइल नंबर</button>
@@ -1498,7 +1498,7 @@
 <div id="scr-lang" class="screen">
   <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:36px;">
     <div class="app-logo">🏥</div>
-    <h1 style="font-size:var(--f-3xl);font-weight:800;margin-top:16px;letter-spacing:-1px;">Swasthya Sathi</h1>
+    <h1 style="font-size:var(--f-3xl);font-weight:800;margin-top:16px;letter-spacing:-1px;">Vridhh Swasthya Mitra</h1>
     <p style="font-size:var(--f-md);color:var(--primary-light);font-weight:600;text-transform:uppercase;letter-spacing:1px;">आपकी सेहत, आपकी आवाज़</p>
   </div>
   <div class="speaking-pill" style="margin-bottom:24px;">
@@ -1531,7 +1531,7 @@
   <div class="home-brand" style="margin-bottom:32px;">
     <div class="home-brand-logo">🏥</div>
     <div>
-      <div class="home-brand-text">Swasthya Sathi</div>
+      <div class="home-brand-text">Vridhh Swasthya Mitra</div>
       <div class="home-brand-sub">आपकी सेहत, आपकी आवाज़</div>
     </div>
   </div>
@@ -1575,7 +1575,7 @@
   <div class="home-brand" style="margin-bottom:32px;">
     <div class="home-brand-logo">🏥</div>
     <div>
-      <div class="home-brand-text">Swasthya Sathi</div>
+      <div class="home-brand-text">Vridhh Swasthya Mitra</div>
       <div class="home-brand-sub">आपकी सेहत, आपकी आवाज़</div>
     </div>
   </div>
@@ -4734,7 +4734,7 @@ function showLoginScreen() {
   VE._cancelCurrentSpeech(); VE._hardStopRec(); VE._cancelRestart();
   showScr('login');
   const L = APP.lang || 'hi';
-  el('login-heading').textContent = L === 'hi' ? 'Swasthya Sathi में आपका स्वागत है' : 'Welcome to Swasthya Sathi';
+  el('login-heading').textContent = L === 'hi' ? 'Vridhh Swasthya Mitra में आपका स्वागत है' : 'Welcome to Vridhh Swasthya Mitra';
   el('login-sub').textContent = L === 'hi' ? 'अपना मोबाइल नंबर या ईमेल डालकर आगे बढ़ें' : 'Enter your mobile number or email to continue';
   el('login-submit-lbl').textContent = L === 'hi' ? 'आगे बढ़ें' : 'Continue';
   el('login-or').textContent = L === 'hi' ? 'या' : 'or';
@@ -5082,7 +5082,7 @@ function renderFDSidebar() {
   el('fd-sidebar').innerHTML = `
     <div class="fd-sidebar-brand">
       <div class="fd-sidebar-logo">🏥</div>
-      <div class="fd-sidebar-name">Swasthya Sathi</div>
+      <div class="fd-sidebar-name">Vridhh Swasthya Mitra</div>
     </div>
     ${FD_TABS.map(t => `
       <div class="fd-nav-item ${t.id === _fdTab ? 'active' : ''}" onclick="switchFDTab('${t.id}')">

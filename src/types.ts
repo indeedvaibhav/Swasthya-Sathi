@@ -6,7 +6,8 @@ export type ScreenId =
   | "vitals"
   | "family"
   | "consult"
-  | "emergency";
+  | "emergency"
+  | "ambulance";
 
 export type Bilingual = {
   primary: string;
