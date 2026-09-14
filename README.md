@@ -1,32 +1,127 @@
-# React + TypeScript + Vite
+# Swasthya Sathi 🩺
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+### Your Voice-First Healthcare Companion
 
-Currently, two official plugins are available:
+Swasthya Sathi is a voice-first healthcare assistant designed to make healthcare technology simpler and more accessible for elderly users.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Instead of navigating through complicated menus, users can simply speak naturally to access their medicines, health vitals, family care information, doctors, appointments, and emergency assistance.
 
-## React Compiler
+> **"Just speak. We'll take care of the rest."**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## 🌐 Live Demo
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+**Try Swasthya Sathi:**  
+https://swasthya-sathii.netlify.app/
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+The application is optimized for both desktop and mobile devices.
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## 💡 Problem
+
+Many elderly users find conventional healthcare applications difficult to use because of:
+
+- Small text and complex interfaces
+- Multiple navigation steps
+- Dependence on typing
+- Difficulty remembering where features are located
+- Limited accessibility for users who are less comfortable with technology
+
+Swasthya Sathi addresses these challenges by making **voice the primary interaction method**, while keeping a simple visual interface available as a fallback.
+
+---
+
+## ✨ Key Features
+
+### 🎙️ Voice-First Interaction
+Users can interact with the application using natural Hindi, Hinglish, or English voice commands.
+
+Examples:
+
+> "मेरी medicines दिखाओ"
+
+> "मेरा blood pressure क्या है?"
+
+> "मेरी family दिखाओ"
+
+> "Doctor दिखाओ"
+
+> "Appointment book करो"
+
+> "Emergency"
+
+---
+
+### 💊 Medicines & Regimen
+
+Users can:
+
+- View their medicines
+- See medication schedules
+- Mark medicines as taken
+- Interact with the medicine system using voice
+
+---
+
+### ❤️ Vitals & Biomarkers
+
+Users can view important health information including:
+
+- Blood pressure
+- Blood sugar
+- Pulse
+- SpO₂
+- Historical vital trends
+
+---
+
+### 👨‍👩‍👧 Family Care Circle
+
+The application allows elderly users to access information about their family and caregivers, creating a connected healthcare experience between the patient and their support network.
+
+---
+
+### 👨‍⚕️ Doctor Consultation
+
+Users can browse doctors and begin an appointment flow.
+
+The voice-driven appointment experience allows users to select:
+
+1. Medical specialty
+2. Doctor
+3. Date
+4. Time
+5. Confirmation
+
+The entire flow can be completed using voice or the visual interface.
+
+---
+
+### 🚨 Emergency Assistance
+
+The application provides an emergency assistance flow designed for elderly users.
+
+For this exhibition prototype, the emergency flow demonstrates the alert and confirmation experience. It does **not** place real emergency calls or send real SMS messages.
+
+---
+
+## 🧠 How the Voice System Works
+
+Swasthya Sathi uses browser-native speech technologies combined with a custom intent-matching system.
+
+```text
+User Speech
+     ↓
+Speech Recognition
+     ↓
+Transcript
+     ↓
+Intent Matcher
+     ↓
+Application Action
+     ↓
+UI Update
+     ↓
+Speech Synthesis Response
